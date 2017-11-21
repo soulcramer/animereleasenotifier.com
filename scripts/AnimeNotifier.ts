@@ -9,8 +9,8 @@ import { Analytics } from "./Analytics"
 import { SideBar } from "./SideBar"
 import { InfiniteScroller } from "./InfiniteScroller"
 import { ServiceWorkerManager } from "./ServiceWorkerManager"
-import { displayAiringDate, displayDate, displayTime } from "./DateView"
-import { findAll, delay, canUseWebP, swapElements } from "./Utils"
+import { displayAiringDate, displayDate , displayTime} from "./DateView"
+import {  canUseWebP, delay, findAll,swapElements } from "./Utils"
 import * as actions from "./Actions"
 import { darkTheme } from "./Actions";
 
@@ -542,17 +542,35 @@ export class AnimeNotifier {
 				base += "@2"
 			}
 
-			element.src = base + extension
+			let source = base + extension
 
+			/*
+				Check if the loading animation is displayed and if so remove it. This avoid the infinite
+				onload and on error execution loop.
+			*/
+			function removeLoading() {
+				if (element.src.includes("/images/elements/rikka-roll.gif")) {
+					element.src = source
+				} else {
+					element.classList.remove("image-loading")
+				}
+			}
+
+			element.src = source
 			if(element.naturalWidth === 0) {
+				//element.src = "/images/elements/rikka-roll.gif"
+				element.classList.add("image-loading")
 				element.onload = () => {
+					removeLoading();
 					this.elementFound.queue(element)
 				}
 
 				element.onerror = () => {
+					removeLoading();
 					this.elementNotFound.queue(element)
 				}
 			} else {
+				element.src = source
 				this.elementFound.queue(element)
 			}
 		}

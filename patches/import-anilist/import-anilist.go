@@ -13,6 +13,7 @@ func main() {
 	color.Green(anilist.AccessToken)
 
 	allAnime := arn.AllAnime()
+
 	count := 0
 
 	for aniListAnime := range anilist.StreamAnime() {
