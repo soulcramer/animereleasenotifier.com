@@ -1,0 +1,12 @@
+component LoadingImageAnimation
+	.ik-loading
+		.ik-top
+			.ik-left
+			.ik-front
+			.ik-right
+			.ik-back
+		.ik-bottom
+			.ik-left
+			.ik-front
+			.ik-right
+			.ik-back

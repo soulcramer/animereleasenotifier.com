@@ -3,9 +3,10 @@ component AnimeGrid(animeList []*arn.Anime, user *arn.User)
 		each anime in animeList
 			.anime-grid-cell(data-added=(user != nil && user.AnimeList().Contains(anime.ID)))
 				a.ajax(href="/anime/" + toString(anime.ID))
-					img.anime-grid-image.lazy(data-src=anime.Image("medium"), data-webp="true", alt=anime.Title.Romaji)
-					.anime-grid-title
+					//img.anime-grid-image.lazy(data-src=anime.Image("medium"), data-webp="true", alt=anime.Title.Romaji)
+					//.anime-grid-title
 						.anime-grid-title-text= anime.Title.ByUser(user)
+					LoadingImageAnimation
 				
 				if user != nil && !user.AnimeList().Contains(anime.ID)
 					button.anime-grid-add-button.action(data-action="addAnimeToCollection", data-trigger="click", data-api="/api/animelist/" + user.ID, data-anime-id=anime.ID)
