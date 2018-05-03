@@ -71,3 +71,46 @@
 
 .indent
 	margin-left 1rem
+
+.switch
+	height 20px
+	position relative
+	display inline-flex
+	align-items center
+	cursor pointer
+
+.switch .transition
+	transition all 100ms linear
+
+.switch .switch-track
+	width 34px
+	height 14px
+	border-radius 34px
+	background #9e9e9e
+	transition all 100ms linear
+
+.switch .switch-handle
+	width 20px
+	height 20px
+	position absolute
+	left 0
+	border-radius 100%
+	background white
+	box-shadow 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12)
+	transition all 100ms linear
+
+.switch .switch-label
+	margin-left 10px
+	-moz-user-select none
+	-webkit-user-select none
+	user-select none
+
+.switch.checked .switch-track
+	background link-hover-text-shadow
+
+.switch.checked .switch-handle
+	left 14px
+	background link-color
+
+.switch.checked .switch-handle::hover
+	background link-hover-color
